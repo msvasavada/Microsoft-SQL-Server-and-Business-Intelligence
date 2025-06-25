@@ -1,1 +1,2 @@
-# Microsoft-SQL-Server-and-Business-Intelligence
+T-SQL Programming :Tables, Stored Procedures, Functions, Views, Temp Tables
+Business Intelligence: MS SSIS, Power BI
