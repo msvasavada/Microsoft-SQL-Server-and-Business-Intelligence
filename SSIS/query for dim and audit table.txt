@@ -1,0 +1,48 @@
+select * from [dbo].[Audit_table]
+
+truncate table [dbo].[Audit_table]
+
+select top 1 * from [dbo].[Audit_table]
+set identity_insert [dbo].[Audit_table] on
+if @@ROWCOUNT = 0
+insert into [dbo].[Audit_table]([AuditKey],[ParentAuditKey],[PkgName])
+values(0,0,'DUMMY')
+
+select * from [dbo].[Dim_Customers]
+
+set identity_insert [dbo].[Dim_Customers] on
+insert into [dbo].[Dim_Customers]
+([Customer_Key], [CustomerID], [CompanyName], [ContactName], [ContactTitle], 
+[Address], [City], [Region], [PostalCode], [Country], [Phone], [Fax], 
+[Active_Flag], [Delete_Flag], [Effective_Start_Date], [Effective_End_Date], 
+[ETL_Row_Create_dt], [Batch_or_Load_ID], [ETL_Batch_DTM], [Last_Mod_DTM], 
+[Last_Mod_User])
+values ('-999999', NULL, NULL,NULL, NULL,NULL, NULL, NULL,NULL, 
+NULL,null,null,null,null,getdate(),'9999-12-31',getdate(), 
+null,getdate(),getdate(),null)
+set identity_insert [dbo].[Dim_Customers] off 
+
+select * from [dbo].[Stg_Customers]
+truncate table [dbo].[Stg_Customers]
+
+select * from [dbo].[Customers]
+
+
+update [dbo].[Customers]
+set CompanyName = 'Heuro Labs'
+where CompanyName = 'Alfreds Futterkiste' and CustomerID = 'ALFKI'
+
+update [dbo].[Customers]
+set ContactTitle = 'BA'
+where CustomerID = 'ANATR'
+
+select * from [dbo].[New_Customers]
+
+update [dbo].[Customers]
+set CompanyName = 'Alfreds Futterkiste'
+where CompanyName = 'Heuro Labs' and CustomerID = 'ALFKI'
+
+update [dbo].[Customers]
+set ContactTitle = 'Business Processing Manager'
+where CustomerID = 'ANATR'
+
