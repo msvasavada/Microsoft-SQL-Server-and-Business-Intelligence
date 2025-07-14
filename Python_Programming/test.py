@@ -1,12 +1,6 @@
-## this is single line comment
-'''
-this is a exmaple of multiline comments
-'''
-'''
-Welcome to the
-python course
+from package.maths import *
+from package.subpackages.mult import multiply
 
-
-'''
-print(1+1)
-print ("Hello World")
+print(addition(2,3))
+print(substraction(4,3))
+print(multiply(4,5))
